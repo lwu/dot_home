@@ -1,11 +1,19 @@
-;; lwu .emacs 2010 (CocoaEmacs)
+;; lwu .emacs 2012 (CocoaEmacs)
 
 ;; paths and directories
-(add-to-list 'load-path "~/src/elisp")
+(add-to-list 'load-path "~/src/dot_home/elisp")
 
 (setq ns-command-modifier 'meta) ; use command key as meta
 
-;(require 'haml-mode)
+(require 'haml-mode)
+
+(set-default-font "Inconsolata-24")
+; (set-frame-font "Andale Mono:20") ; XEmacs-only
+;; (mac-font-panel-mode) ; CarbonEmacs-only
+;; (set-default-font "-apple-monaco-medium-r-normal--20-0-72-72-m-0-iso10646-1")
+; (tool-bar-mode -1) ; fails on carbon?
+; (when window-system 
+  (set-frame-size (selected-frame) 104 28)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -34,12 +42,6 @@
 ; (require 'tramp)
 (setq tramp-default-method "ssh")
 ; (require 'whitespace-visual-mode) ; XEmacs-only
-; (set-frame-font "Andale Mono:20") ; XEmacs-only
-
-;; (mac-font-panel-mode) ; CarbonEmacs-only
-(set-default-font "-apple-monaco-medium-r-normal--20-0-72-72-m-0-iso10646-1")
-
-(set-frame-size (selected-frame) 80 28); TODO condp non -nw mode
 
 (server-start) ; for emacsclient
 
@@ -100,6 +102,8 @@
 
 (fset 'duplicate-line [?\C-a ?\C-  down ?\M-w ?\C-y ?\C-p])
 (global-set-key [(control c) (y)] 'duplicate-line)
+(global-set-key [(control x) (y)] 'duplicate-line)
+(global-set-key [(control x) (control y)] 'duplicate-line)
 
 ; Meta [ and ] enlarge and shrink the current window
 (global-set-key [(meta \[)] 'enlarge-window)

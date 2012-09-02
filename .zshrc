@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+# PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 PATH="/usr/local/bin:$HOME/bin:$PATH"
 
 setopt AUTO_CD
