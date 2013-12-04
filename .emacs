@@ -1,19 +1,34 @@
-;; lwu .emacs 2012 (CocoaEmacs)
+;; lwu .emacs 2013 (CocoaEmacs)
 
 ;; paths and directories
 (add-to-list 'load-path "~/src/dot_home/elisp")
+; (add-to-list 'load-path "~/src/ESS/lisp")
 
 (setq ns-command-modifier 'meta) ; use command key as meta
 
-(require 'haml-mode)
+(require 'ido)
+(ido-mode t)
 
-(set-default-font "Inconsolata-24")
+(require 'haml-mode)
+(add-hook 'haml-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode nil)
+	    (define-key haml-mode-map "\C-m" 'newline-and-indent)))
+
+;(require 'ess-site) ; test, guarded
+
 ; (set-frame-font "Andale Mono:20") ; XEmacs-only
 ;; (mac-font-panel-mode) ; CarbonEmacs-only
 ;; (set-default-font "-apple-monaco-medium-r-normal--20-0-72-72-m-0-iso10646-1")
 ; (tool-bar-mode -1) ; fails on carbon?
-; (when window-system 
-  (set-frame-size (selected-frame) 104 28)
+; (when window-system ; ... ; TODO resize to max frame-size when not window-system 
+
+(set-default-font "Inconsolata-24")
+(set-frame-size (selected-frame) 104 28)
+
+(add-to-list 'default-frame-alist '(font . "Inconsolata-24")) ; future frame defaults
+(add-to-list 'default-frame-alist '(width . 104))
+(add-to-list 'default-frame-alist '(height . 28))
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -94,8 +109,25 @@
        ;; Maximum colors
        (setq font-lock-maximum-decoration t)))
 
+; http://www.emacswiki.org/emacs/DuplicateLines
+; # consecutive duplicates
+(defun uniquify-region-lines (beg end)
+    "Remove duplicate adjacent lines in region."
+    (interactive "*r")
+    (save-excursion
+      (goto-char beg)
+      (while (re-search-forward "^\\(.*\n\\)\\1+" end t)
+        (replace-match "\\1"))))
+  
+(defun uniquify-buffer-lines ()
+  "Remove duplicate adjacent lines in the current buffer."
+  (interactive)
+  (uniquify-region-lines (point-min) (point-max)))
+
 ; Key bindings
 ; ____________
+
+(global-set-key [(meta \`)] 'other-frame)
 
 (global-set-key [(control home)] 'beginning-of-buffer)
 (global-set-key [(control end)]  'end-of-buffer)

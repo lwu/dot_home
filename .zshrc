@@ -4,10 +4,14 @@ ZSH=$HOME/.oh-my-zsh
 # PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 PATH="/usr/local/bin:$HOME/bin:$PATH"
 
+ANDROID_HOME=/Users/lwu/src/android-sdk-macosx
+
 setopt AUTO_CD
 if [ -f `brew --prefix`/etc/autojump ]; then
   . `brew --prefix`/etc/autojump
 fi
+
+unsetopt correct_all # autocorrect no mo
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -18,9 +22,13 @@ ZSH_THEME="dpoggi"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias e="emacs"
+# alias e="emacs"
+alias e="emacsclient -n"
 alias emacs="/usr/local/Cellar/emacs/24.1/Emacs.app/Contents/MacOS/Emacs -nw"
 alias em="/usr/local/Cellar/emacs/24.1/Emacs.app/Contents/MacOS/Emacs"
+alias here="pwd | pbcopy"
+alias writer="open -a 'iA Writer'"
+alias wr="writer"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
