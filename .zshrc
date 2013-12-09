@@ -7,9 +7,7 @@ PATH="/usr/local/bin:$HOME/bin:$PATH"
 ANDROID_HOME=/Users/lwu/src/android-sdk-macosx
 
 setopt AUTO_CD
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
-fi
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 unsetopt correct_all # autocorrect no mo
 

@@ -6,8 +6,8 @@
 
 (setq ns-command-modifier 'meta) ; use command key as meta
 
-(require 'ido)
-(ido-mode t)
+;(require 'ido)
+;(ido-mode t)
 
 (require 'haml-mode)
 (add-hook 'haml-mode-hook
@@ -20,8 +20,17 @@
 ; (set-frame-font "Andale Mono:20") ; XEmacs-only
 ;; (mac-font-panel-mode) ; CarbonEmacs-only
 ;; (set-default-font "-apple-monaco-medium-r-normal--20-0-72-72-m-0-iso10646-1")
-; (tool-bar-mode -1) ; fails on carbon?
-; (when window-system ; ... ; TODO resize to max frame-size when not window-system 
+
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(menu-bar-mode -1)
+
+(defun zenburn-init ()
+  (load-theme 'zenburn))
+
+(add-hook 'after-init-hook 'zenburn-init)
+
+; (when window-system ; ... ; TODO resize to max frame-size when not window-system
 
 (set-default-font "Inconsolata-24")
 (set-frame-size (selected-frame) 104 28)
@@ -30,16 +39,18 @@
 (add-to-list 'default-frame-alist '(width . 104))
 (add-to-list 'default-frame-alist '(height . 28))
 
+
 (setq js-indent-level 2)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
  '(c-default-style "k&r")
  '(column-number-mode t)
+ '(custom-safe-themes (quote ("8eef22cd6c122530722104b7c82bc8cdbb690a4ccdd95c5ceec4f3efa5d654f5" default)))
  '(delete-key-deletes-forward t)
  '(font-lock-mode t t (font-lock))
  '(line-number-mode t)
@@ -50,10 +61,10 @@
  '(recent-files-permanent-submenu t)
  '(user-mail-address "lwu2@"))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 ; (require 'tramp)
@@ -64,7 +75,7 @@
 
 (require 'recentf)
 (recentf-mode 1)
-; (require 'icicles) 
+; (require 'icicles)
 (setq visible-bell t)
 (transient-mark-mode t) ; region mark highlighting
 ; (icy-mode t) ; icicle?
@@ -76,7 +87,7 @@
   (interactive)
   (set-frame-parameter nil 'fullscreen (if (frame-parameter nil 'fullscreen)
                                            nil
-                                           'fullboth))) 
+                                           'fullboth)))
 ;; (require 'tabbar)
 ;; (tabbar-mode t)
 ;; (set-face-attribute
@@ -117,7 +128,7 @@
       (goto-char beg)
       (while (re-search-forward "^\\(.*\n\\)\\1+" end t)
         (replace-match "\\1"))))
-  
+
 (defun uniquify-buffer-lines ()
   "Remove duplicate adjacent lines in the current buffer."
   (interactive)
@@ -178,7 +189,7 @@
     ("^..d.* \\([^ ]+\\)$" 1 font-lock-keyword-face))
   "Additional expressions to highlight in Dired mode.")
 
-(put 'dired-mode 'font-lock-defaults 'dired-font-lock-keywords) 
+(put 'dired-mode 'font-lock-defaults 'dired-font-lock-keywords)
 
 (defun delete-backward-line ()
   (interactive)
@@ -202,7 +213,7 @@
 
 (windmove-default-keybindings 'meta) ; thx emacsblog.org
 
-(global-set-key [(control c) g] 'grep)
+(global-set-key [(control c) (control g)] 'grep)
 
 (global-set-key [(control c) (f)] 'font-lock-mode)
 
@@ -353,7 +364,7 @@
 (defun dos2unix ()
   (interactive)
   (goto-char (point-min))
-  (while (search-forward "\r" nil t) 
+  (while (search-forward "\r" nil t)
     (replace-match "")))
 
 ;versa vice
