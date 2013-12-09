@@ -30,6 +30,8 @@
 (add-to-list 'default-frame-alist '(width . 104))
 (add-to-list 'default-frame-alist '(height . 28))
 
+(setq js-indent-level 2)
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -68,9 +70,6 @@
 ; (icy-mode t) ; icicle?
 (global-hl-line-mode t)
 (set-face-background 'hl-line "#FFF") ; Emacs 22-only
-
-
-
 
 (define-key global-map [(meta return)] 'mac-toggle-max-window)
 (defun mac-toggle-max-window ()
