@@ -4,7 +4,9 @@
 (add-to-list 'load-path "~/src/dot_home/elisp")
 ; (add-to-list 'load-path "~/src/ESS/lisp")
 
-(setq ns-command-modifier 'meta) ; use command key as meta
+
+(setq mac-command-modifier 'meta) ; command => meta
+(setq mac-option-modifier 'super) ; option  => super
 
 ;(require 'ido)
 ;(ido-mode t)
@@ -28,7 +30,7 @@
 (defun zenburn-init ()
   (load-theme 'zenburn))
 
-(add-hook 'after-init-hook 'zenburn-init)
+(add-hook 'after-init-hook 'zenburn-init) ; test if sunset?
 
 ; (when window-system ; ... ; TODO resize to max frame-size when not window-system
 
@@ -74,6 +76,8 @@
 (server-start) ; for emacsclient
 
 (require 'recentf)
+(global-set-key "\C-c\ \C-f" 'recentf-open-files)
+
 (recentf-mode 1)
 ; (require 'icicles)
 (setq visible-bell t)
@@ -137,7 +141,8 @@
 ; Key bindings
 ; ____________
 
-(global-set-key [(meta \`)] 'other-frame)
+(global-set-key [(super tab)] 'other-frame)
+(global-set-key [(meta \`)]   'other-frame)
 
 (global-set-key [(control home)] 'beginning-of-buffer)
 (global-set-key [(control end)]  'end-of-buffer)
@@ -167,10 +172,8 @@
       (interactive)
       (switch-to-buffer (other-buffer (current-buffer)) norecord))
 
-; (control meta l) switches to other buffer
+; switch to recent buffer
 (global-set-key [(control meta l)] 'switch-to-other-buffer)
-
-; [(control .)] switches to other buffer
 (global-set-key [(control \.)] 'switch-to-other-buffer)
 
 ; (control shift 1) opens a shell
