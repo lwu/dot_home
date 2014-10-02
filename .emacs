@@ -8,8 +8,8 @@
 (setq mac-command-modifier 'meta) ; command => meta
 (setq mac-option-modifier 'super) ; option  => super
 
-;(require 'ido)
-;(ido-mode t)
+(require 'ido)
+(ido-mode t)
 
 (require 'haml-mode)
 (add-hook 'haml-mode-hook
@@ -83,7 +83,7 @@
 (setq visible-bell t)
 (transient-mark-mode t) ; region mark highlighting
 ; (icy-mode t) ; icicle?
-(global-hl-line-mode t)
+(global-hl-line-mode nil)
 (set-face-background 'hl-line "#FFF") ; Emacs 22-only
 
 (define-key global-map [(meta return)] 'mac-toggle-max-window)
@@ -408,3 +408,4 @@
 ;;                  (set-glyph-image gc-pointer-glyph file))))))
 
 (put 'narrow-to-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

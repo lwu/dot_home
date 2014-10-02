@@ -1,10 +1,11 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-# PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
-PATH="/usr/local/bin:$HOME/bin:$PATH"
-
 ANDROID_HOME=/Users/lwu/src/android-sdk-macosx
+
+# PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+PATH="/usr/local/bin:$HOME/bin:$PATH:$ANDROID_HOME/platform-tools"
+
 
 setopt AUTO_CD
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
@@ -27,6 +28,11 @@ alias em="/usr/local/Cellar/emacs/24.1/Emacs.app/Contents/MacOS/Emacs"
 alias here="pwd | pbcopy"
 alias writer="open -a 'iA Writer'"
 alias wr="writer"
+alias o="open"
+alias o.="open ."
+
+autoload -U zmv # extended move command
+alias mmv='noglob zmv -W'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
