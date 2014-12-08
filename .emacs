@@ -4,6 +4,17 @@
 (add-to-list 'load-path "~/src/dot_home/elisp")
 ; (add-to-list 'load-path "~/src/ESS/lisp")
 
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+
+; scala & ensime
+(unless (package-installed-p 'scala-mode2)
+  (package-refresh-contents) (package-install 'scala-mode2))
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
 
 (setq mac-command-modifier 'meta) ; command => meta
 (setq mac-option-modifier 'super) ; option  => super
@@ -299,6 +310,14 @@
     (or (eq major-mode (quote emacs-lisp-mode)) (emacs-lisp-mode))))
 
 (global-set-key [(control c) (d)] 'edit-dot-emacs)
+
+(defun edit-dot-zshrc ()
+  "Edits .zshrc"
+  (interactive)
+  (find-file "~/.zshrc"))
+
+(global-set-key [(control c) (z)] 'edit-dot-zshrc)
+
 
 ; calendar
 (global-set-key [(control c) (c)] 'calendar)

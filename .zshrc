@@ -31,6 +31,10 @@ alias wr="writer"
 alias o="open"
 alias o.="open ."
 
+# via http://msol.io/blog/tech/2014/03/10/work-more-efficiently-on-your-mac-for-developers/
+function f() { find . -iname "*$1*" ${@:2} } # subdir find (ignore case)
+function r() { grep "$1" ${@:2} -R . } # recursive grep
+
 autoload -U zmv # extended move command
 alias mmv='noglob zmv -W'
 
@@ -40,6 +44,8 @@ alias mmv='noglob zmv -W'
 # Comment this out to disable weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
 
+UPDATE_ZSH_DAYS=13
+
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
 
@@ -47,12 +53,12 @@ alias mmv='noglob zmv -W'
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
